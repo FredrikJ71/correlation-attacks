@@ -1,23 +1,27 @@
 /*
  * word64.c
  *
- *  Created on: Nov 5, 2014
- *      Author: fredrik
+ *  Created on: Dec 6, 2014
+ *      Author: FredrikJ71
+ *
+ * Implements the functions defined in utils/word64.h
  */
 
-#include "word64.h"
+#include "utils/word64.h"
 
 void print_w(w64 w){
+//print a 64-bit word in hexadecimal
   printf("%016" PRIxFAST64,w);
 }
 
 void println_w(w64 w){
+//print a 64-bit word in hexadecimal, end with new line
   printf("%016" PRIxFAST64 ,w);
   printf("\n");
 }
 
 int weight_w(w64 w){
-	//returns the weight (number of bits=1) of w
+//returns the weight (number of bits=1) of w
 	 w -= (w >> 1) & 0x5555555555555555uLL; //put count of each 2 bits into those 2 bits
 	 w = (w & 0x3333333333333333uLL) + ((w >> 2) & 0x3333333333333333uLL); //put count of each 4 bits into those 4 bits
 	 w = (w + (w >> 4)) & 0x0f0f0f0f0f0f0f0fuLL; //put count of each 8 bits into those 8 bits
@@ -27,19 +31,4 @@ int weight_w(w64 w){
 	 return w & 0x7f;
 }
 
-void testWord64() {
-	w64 test = 0x1234fde;
-	print_w(test);
-	printf("\n");
-	printf("%d\n",weight_w(test));
-	for (int i = 56; i < 64; i++) {
-		set_w(&test, i);
-		print_w(test);
-		printf("\n");
-	}
-	printf("%d\n",weight_w(test));
-	for (int i = 56; i < 64; i++) {
-		clear_w(&test, i);
-		println_w(test);
-	}
-}
+
