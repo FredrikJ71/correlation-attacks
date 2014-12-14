@@ -29,7 +29,7 @@ inline static int getBit_v(w64 *vec,unsigned n){
 //bit0 is the least significant bit
 //it is assumed that the user checks '
 //that vec contains at least n bits
-  return ((vec[n>>6])&(1uLL<<(n%0x3f)))==0?0:1;
+  return ((vec[n>>6])&(1uLL<<(n&0x3f)))==0?0:1;
 }
 
 inline static void set_v(w64 *vec,unsigned n){
@@ -37,7 +37,7 @@ inline static void set_v(w64 *vec,unsigned n){
 //bit0 is the least significant bit
 //it is assumed that the user checks
 //that vec contains at least n bits
-  (vec[n>>6])|=(1uLL<<(n%0x3f));
+  (vec[n>>6])|=(1uLL<<(n&0x3f));
 }
 
 inline static void clear_v(w64 *vec,unsigned n){
@@ -45,7 +45,7 @@ inline static void clear_v(w64 *vec,unsigned n){
 //bit0 is the least significant bit
 //it is assumed that the user checks
 //that vec contains at least n bits
-  (vec[n>>6])&=~(1uLL<<(n%0x3f));
+  (vec[n>>6])&=~(1uLL<<(n&0x3f));
 }
 
 inline static void setVal_v(w64 *vec,unsigned n,int b){

@@ -5,6 +5,8 @@
  *      Author: FredrikJ71
  * 
  * Methods for handling a vector(array) of bits 
+ * The methods can be divided into three classes
+ * Manipulate individual bits, print vector, calculate weight
  *
 */
 
